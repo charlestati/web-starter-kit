@@ -1,0 +1,40 @@
+{
+  "name": "web-starter-kit",
+  "version": "1.0.0",
+  "repository": "git@github.com:charlestati/web-starter-kit.git",
+  "author": "charlestati <git@charlestati.com>",
+  "license": "MIT",
+  "scripts": {
+    "setup": "mkdirp dist/scripts/ dist/styles/ dist/images/",
+    "clean": "rimraf dist/scripts/* dist/styles/* dist/images/* dist/*.html",
+    "lint": "standard --verbose src/scripts/**/*.js | snazzy",
+    "scripts": "browserify src/scripts/main.js -o dist/scripts/bundle.js -t babelify -t uglifyify",
+    "scripts-watch": "watchify src/scripts/main.js -o dist/scripts/bundle.js -t babelify -t uglifyify",
+    "styles": "node-sass -r --output-style compressed src/styles/main.scss dist/styles/main.css",
+    "styles-watch": "node-sass -w -r --source-map-embed src/styles/main.scss dist/styles/main.css",
+    "images": "imagemin src/images/* --out-dir=dist/images/",
+    "templates": "pug src/templates/*.pug -o dist/",
+    "templates-watch": "pug -w src/templates/*.pug -o dist/",
+    "browser-sync": "browser-sync start --server dist/ --files dist/",
+    "build": "yarn run setup && yarn run scripts && yarn run styles && yarn run images && yarn run templates",
+    "serve": "yarn run build && concurrently -k \"yarn run scripts-watch\" \"yarn run styles-watch\" \"yarn run templates-watch\" \"yarn run browser-sync\"",
+    "start": "yarn run build",
+    "test": "yarn run lint"
+  },
+  "devDependencies": {
+    "babel-preset-latest": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.18.7",
+    "browserify": "^14.0.0",
+    "concurrently": "^3.2.0",
+    "imagemin-cli": "^3.0.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.5.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^2.5.4",
+    "snazzy": "^6.0.0",
+    "standard": "^8.6.0",
+    "uglifyify": "^3.0.4",
+    "watchify": "^3.9.0"
+  }
+}
