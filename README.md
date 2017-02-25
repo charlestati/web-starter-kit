@@ -21,6 +21,11 @@ It's like [Google's Web Starter Kit](https://github.com/google/web-starter-kit) 
 - Run `yarn start` to build your project in `/dist`
 - Run `yarn run serve` to build your project and enable live-reload and browser syncing
 
+## Todo
+
+- [ ] Add Autoprefixer and cssnano with PostCSS
+- [ ] Use TypeScript
+
 ## License
 
 MIT
